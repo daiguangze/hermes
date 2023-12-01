@@ -16,9 +16,9 @@ import java.util.concurrent.TimeUnit;
 
 public class Main {
 
-    private static String key = "304a4f67c2699e6a7fe3f177f03ee904";
+    private static String key = "a304a4f67c2699e6a7fe3f177f03ee904a";
 
-    private static String secret = "kihba8xg1VfHlWRZ";
+    private static String secret = "akihba8xg1VfHlWRZa";
 
     public static OkHttpClient getInstance() {
         OkHttpClient okHttpClient = new OkHttpClient.Builder()//构建器
