@@ -12,7 +12,7 @@ public class AuthController {
 
     private Logger logger = LoggerFactory.getLogger(AuthController.class);
 
-    @RequestMapping("/verify")
+    @RequestMapping("/api/verify")
     public ResponseEntity<String> verify(String token){
         logger.info("token:{}",token);
         // token验证
