@@ -5,10 +5,12 @@ import com.guangze.hermes.application.auth.command.AuthorizeCommand;
 import com.guangze.hermes.common.result.Result;
 import com.guangze.hermes.domain.auth.JwtUtil;
 import com.guangze.hermes.domain.auth.realm.JwtRealm;
+import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Map;
 
+@Service
 public class ApiAccessServiceImpl implements IApiAccessService {
     @Override
     public Result<Map<String, String>> authorize(AuthorizeCommand command) {
