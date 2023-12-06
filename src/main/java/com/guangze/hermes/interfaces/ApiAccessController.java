@@ -1,5 +1,8 @@
 package com.guangze.hermes.interfaces;
 
+import com.guangze.hermes.application.auth.IApiAccessService;
+import com.guangze.hermes.application.auth.command.AuthorizeCommand;
+import com.guangze.hermes.common.result.Result;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -14,13 +17,15 @@ import java.util.Map;
 @RestController
 public class ApiAccessController {
 
+    @Resource
+    IApiAccessService apiAccessService;
 
     private Logger logger = LoggerFactory.getLogger(ApiAccessController.class);
 
     @RequestMapping("/authorize")
-    public ResponseEntity<Map<String, String>> authorize(String username, String password) {
-        // 验证\
-        return null;
+    public Result<Map<String, String>> authorize(String username, String password) {
+        AuthorizeCommand command = new AuthorizeCommand(username, password);
+        return apiAccessService.authorize(command);
     }
 
     @RequestMapping("/verify")
