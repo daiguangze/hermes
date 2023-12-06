@@ -9,12 +9,6 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- * @author 小傅哥，微信：fustack
- * @description 自定义 Realm
- * @github https://github.com/fuzhengwei
- * @Copyright 公众号：bugstack虫洞栈 | 博客：https://bugstack.cn - 沉淀、分享、成长，让自己和他人都能有所收获！
- */
 public class JwtRealm extends AuthorizingRealm {
 
     private Logger logger = LoggerFactory.getLogger(JwtRealm.class);
@@ -32,6 +26,12 @@ public class JwtRealm extends AuthorizingRealm {
         return null;
     }
 
+    /**
+     * 仅获取进行对比的信息
+     * @param token the authentication token containing the user's principal and credentials.
+     * @return
+     * @throws AuthenticationException
+     */
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
         String jwt = (String) token.getPrincipal();
@@ -45,6 +45,7 @@ public class JwtRealm extends AuthorizingRealm {
         // 可以获取username信息，并做一些处理
         String username = (String) jwtUtil.decode(jwt).get("username");
         logger.info("鉴权用户 username：{}", username);
+        // todo  数据库用户信息
         return new SimpleAuthenticationInfo(jwt, jwt, "JwtRealm");
     }
 
