@@ -36,7 +36,9 @@ public class MysqlDruidProps {
     private final String maxWait = "50";
 
 
-
+    /**
+     * 隐藏数据库地址, 从本地文件读取地址
+     */
     @PostConstruct
     public void init() {
         String os = System.getProperty("os.name").toLowerCase();
