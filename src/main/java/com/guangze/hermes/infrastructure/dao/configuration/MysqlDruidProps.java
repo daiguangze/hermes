@@ -61,7 +61,6 @@ public class MysqlDruidProps {
             }
         }catch (Exception e){
             logger.error("[ERROR] 数据库url 读取失败 !");
-
         }
 
     }
