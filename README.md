@@ -16,7 +16,7 @@ nginx
 ```
 
 ## 数据库地址读取
-存放路径见  package com.guangze.hermes.infrastructure.dao.configuration.MysqlDruidProps
+存放路径见  package com.guangze.hermes.infrastructure.configuration.MysqlDruidProps
 
 mysql.txt文件存放内容
 ```text

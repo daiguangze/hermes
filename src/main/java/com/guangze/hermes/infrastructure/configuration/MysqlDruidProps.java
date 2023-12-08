@@ -1,6 +1,5 @@
-package com.guangze.hermes.infrastructure.dao.configuration;
+package com.guangze.hermes.infrastructure.configuration;
 
-import com.guangze.hermes.domain.auth.realm.JwtRealm;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
