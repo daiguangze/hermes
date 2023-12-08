@@ -16,6 +16,7 @@ public class ApiAccessServiceImpl implements IApiAccessService {
     public Result<Map<String, String>> authorize(AuthorizeCommand command) {
         Map<String, String> res = new HashMap<>();
         // todo 账号密码验证
+
         // 生成token
         JwtUtil jwtUtil = new JwtUtil();
         Map<String, Object> chaim = new HashMap<>();
