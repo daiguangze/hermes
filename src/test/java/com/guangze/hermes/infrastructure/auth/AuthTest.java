@@ -2,7 +2,6 @@ package com.guangze.hermes.infrastructure.auth;
 
 
 import com.guangze.hermes.infrastructure.auth.persistence.dao.UserDao;
-import com.guangze.hermes.infrastructure.auth.persistence.dao.UserTestDao;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
