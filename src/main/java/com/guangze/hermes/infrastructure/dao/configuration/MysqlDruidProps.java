@@ -36,6 +36,7 @@ public class MysqlDruidProps {
         props.setProperty("druid.maxIdle",maxIdle);
         props.setProperty("druid.maxActive",maxActive);
         props.setProperty("druid.maxWait",maxWait);
+
         return props;
     }
 }
