@@ -1,14 +1,24 @@
 package com.guangze.hermes.infrastructure.dao.configuration;
 
+import com.guangze.hermes.domain.auth.realm.JwtRealm;
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
+import java.io.File;
 import java.util.Properties;
+import java.util.Scanner;
 
+@Slf4j
 @Component
 public class MysqlDruidProps {
 
+    private Logger logger = LoggerFactory.getLogger(MysqlDruidProps.class);
+
     // todo 读取文件本地文件
-    private final String url = "jdbc:mysql://39.108.132.195:3307/test1?useUnicode=true&&characterEncoding=utf-8&&useSSL=false";
+    private String url = "";
 
     private final String username = "root";
 
@@ -24,6 +34,36 @@ public class MysqlDruidProps {
     private final String maxActive = "10";
 
     private final String maxWait = "50";
+
+
+    /**
+     * 隐藏数据库地址, 从本地文件读取地址
+     */
+    @PostConstruct
+    public void init() {
+        String os = System.getProperty("os.name").toLowerCase();
+        try {
+            if (os.contains("win")){
+                Scanner in = new Scanner(new File("D:\\Temp\\mysql.txt"));
+                if (in.hasNextLine()){
+                    String ans = in.nextLine();
+                    this.url = ans;
+                    logger.info("[MYSQL] url 获取成功");
+                }
+
+            }else {
+                Scanner in = new Scanner(new File("/root/data/mysql/mysql.txt"));
+                if (in.hasNextLine()){
+                    String ans = in.nextLine();
+                    this.url = ans;
+                    logger.info("[MYSQL] url 获取成功");
+                }
+            }
+        }catch (Exception e){
+            logger.error("[ERROR] 数据库url 读取失败 !");
+        }
+
+    }
 
     public Properties getProperties() {
         Properties props = new Properties();
