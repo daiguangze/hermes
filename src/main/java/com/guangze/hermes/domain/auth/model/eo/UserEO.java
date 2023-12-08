@@ -18,7 +18,6 @@ public class UserEO {
 
     private String account;
 
-
     private String password;
 
     private String username;
