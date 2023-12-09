@@ -1,4 +1,4 @@
-package com.guangze.hermes.domain.chatglm.utils.model;
+package com.guangze.hermes.domain.chatglm.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
