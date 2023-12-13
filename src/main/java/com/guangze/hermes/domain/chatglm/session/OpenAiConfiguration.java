@@ -3,19 +3,22 @@ package com.guangze.hermes.domain.chatglm.session;
 import com.guangze.hermes.domain.chatglm.OpenAiApi;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import okhttp3.sse.EventSource;
 import okhttp3.sse.EventSources;
 
-@Builder
+@NoArgsConstructor
 public class OpenAiConfiguration {
 
 
     /**
      * openAI
      */
+    @Getter
+    @Setter
     private String apiKeySecret;
 
     @Getter
