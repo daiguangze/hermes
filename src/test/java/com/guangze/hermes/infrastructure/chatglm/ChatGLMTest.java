@@ -19,7 +19,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.ArrayList;
 import java.util.concurrent.CountDownLatch;
 
-import static org.yaml.snakeyaml.TypeDescription.log;
 
 @Slf4j
 @SpringBootTest
