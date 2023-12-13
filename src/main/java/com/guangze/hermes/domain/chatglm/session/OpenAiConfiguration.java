@@ -1,13 +1,21 @@
 package com.guangze.hermes.domain.chatglm.session;
 
+import com.guangze.hermes.domain.chatglm.OpenAiApi;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
+import okhttp3.sse.EventSource;
+import okhttp3.sse.EventSources;
 
+@Builder
 public class OpenAiConfiguration {
 
 
+    /**
+     * openAI
+     */
     private String apiKeySecret;
 
     @Getter
@@ -16,12 +24,24 @@ public class OpenAiConfiguration {
     @Getter
     private String apiSecret;
 
+    @Getter
+    @Setter
+    private OpenAiApi openAiApi;
+
+    @Getter
+    @Setter
+    private String apiHost;
+
     public void setApiKeySecret(String apiKeySecret) {
         this.apiKeySecret = apiKeySecret;
         String[] split = apiKeySecret.split("\\.");
         if (split.length != 2) throw new RuntimeException("apiKeySceret格式错误!");
         this.apiKey = split[0];
         this.apiSecret = split[1];
+    }
+
+    public EventSource.Factory createRequestFactory() {
+        return EventSources.createFactory(okHttpClient);
     }
 
 

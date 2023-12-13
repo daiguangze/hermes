@@ -1,11 +1,15 @@
 package com.guangze.hermes.domain.chatglm.session.impl;
 
+import com.guangze.hermes.domain.chatglm.OpenAiApi;
 import com.guangze.hermes.domain.chatglm.interceptor.OpenAiHTTPInterceptor;
 import com.guangze.hermes.domain.chatglm.session.OpenAiConfiguration;
 import com.guangze.hermes.domain.chatglm.session.OpenAiSession;
 import com.guangze.hermes.domain.chatglm.session.OpenAiSessionFactory;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+import retrofit2.converter.jackson.JacksonConverterFactory;
 
 import java.util.concurrent.TimeUnit;
 
@@ -34,10 +38,16 @@ public class DefaultOpenAiSeesionFactory implements OpenAiSessionFactory {
                 .build();
 
         configuration.setOkHttpClient(okHttpClient);
-        //
+        // openAI 接口
+        OpenAiApi openAiApi = new Retrofit.Builder()
+                .baseUrl(configuration.getApiHost())
+                .client(okHttpClient)
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addConverterFactory(JacksonConverterFactory.create())
+                .build().create(OpenAiApi.class);
 
+        configuration.setOpenAiApi(openAiApi);
 
-
-        return null;
+        return new DefaultOpenAiSession(configuration);
     }
 }
