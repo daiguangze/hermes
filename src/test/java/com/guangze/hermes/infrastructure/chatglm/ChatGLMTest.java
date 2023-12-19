@@ -13,6 +13,7 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import okhttp3.sse.EventSource;
 import okhttp3.sse.EventSourceListener;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -23,9 +24,9 @@ import java.util.concurrent.CountDownLatch;
 @Slf4j
 @SpringBootTest
 public class ChatGLMTest {
-    private OpenAiSession openAiSession;
+    private static OpenAiSession openAiSession;
 
-    @BeforeAll
+    @BeforeEach
     public void init(){
 // 1. 配置文件
         OpenAiConfiguration configuration = new OpenAiConfiguration();
@@ -48,36 +49,52 @@ public class ChatGLMTest {
             private static final long serialVersionUID = -7988151926241837899L;
 
             {
-                add(ChatCompletionRequest.Prompt.builder()
-                        .role(Role.user.getCode())
-                        .content("1+2")
-                        .build());
-
-                add(ChatCompletionRequest.Prompt.builder()
-                        .role(Role.user.getCode())
-                        .content("Okay")
-                        .build());
+//                add(ChatCompletionRequest.Prompt.builder()
+//                        .role(Role.user.getCode())
+//                        .content("1+2")
+//                        .build());
+//
+//                add(ChatCompletionRequest.Prompt.builder()
+//                        .role(Role.user.getCode())
+//                        .content("Okay")
+//                        .build());
+//
+//                /* system 和 user 为一组出现。如果有参数类型为 system 则 system + user 一组一起传递。*/
+//                add(ChatCompletionRequest.Prompt.builder()
+//                        .role(Role.system.getCode())
+//                        .content("1+1=2")
+//                        .build());
+//
+//                add(ChatCompletionRequest.Prompt.builder()
+//                        .role(Role.user.getCode())
+//                        .content("Okay")
+//                        .build());
+//
+//                add(ChatCompletionRequest.Prompt.builder()
+//                        .role(Role.user.getCode())
+//                        .content("1+2")
+//                        .build());
 
                 /* system 和 user 为一组出现。如果有参数类型为 system 则 system + user 一组一起传递。*/
                 add(ChatCompletionRequest.Prompt.builder()
+                        .role(Role.user.getCode())
+                        .content("你是谁?")
+                        .build());
+                add(ChatCompletionRequest.Prompt.builder()
                         .role(Role.system.getCode())
-                        .content("1+1=2")
+                        .content("我是一个java高级工程师,对所有的java相关知识了如指掌!")
                         .build());
 
                 add(ChatCompletionRequest.Prompt.builder()
                         .role(Role.user.getCode())
-                        .content("Okay")
-                        .build());
-
-                add(ChatCompletionRequest.Prompt.builder()
-                        .role(Role.user.getCode())
-                        .content("1+2")
+                        .content("怎么用java语言写一个冒泡排序?用中文描述一下就行,不需要给我写出具体代码.")
                         .build());
 
             }
         });
 
         // 请求
+        CountDownLatch lock = new CountDownLatch(1);
         openAiSession.completions(request, new EventSourceListener() {
             @Override
             public void onEvent(EventSource eventSource, @Nullable String id, @Nullable String type, String data) {
@@ -92,13 +109,14 @@ public class ChatGLMTest {
 
             @Override
             public void onClosed(EventSource eventSource) {
+                lock.countDown();
                 log.info("对话完成");
             }
 
         });
 
         // 等待
-        new CountDownLatch(1).await();
+        lock.await();
     }
 
 }
