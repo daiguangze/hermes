@@ -29,6 +29,7 @@ public class ApiAccessController {
             @RequestParam(name = "password", required = false, defaultValue = "") String password) {
         AuthorizeCommand command = new AuthorizeCommand(username, password);
         return apiAccessService.authorize(command);
+
     }
 
     @RequestMapping("/verify")
