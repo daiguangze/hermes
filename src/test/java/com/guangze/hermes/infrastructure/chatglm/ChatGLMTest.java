@@ -31,7 +31,7 @@ public class ChatGLMTest {
 // 1. 配置文件
         OpenAiConfiguration configuration = new OpenAiConfiguration();
         configuration.setApiHost("https://open.bigmodel.cn/");
-        configuration.setApiKeySecret("d570f7c5d289cdac2abdfdc562e39f3f.trqz1dH8ZK6ED7Pg");
+        configuration.setApiKeySecret("304a4f67c2699e6a7fe3f177f03ee904.kihba8xg1VfHlWRZ");
         configuration.setLevel(HttpLoggingInterceptor.Level.BODY);
         // 2. 会话工厂
         OpenAiSessionFactory factory = new DefaultOpenAiSeesionFactory(configuration);
@@ -43,7 +43,7 @@ public class ChatGLMTest {
     public void test_completions() throws JsonProcessingException, InterruptedException {
         // 入参；模型、请求信息
         ChatCompletionRequest request = new ChatCompletionRequest();
-        request.setModel(Model.CHATGLM_TURBO); // chatGLM_6b_SSE、chatglm_lite、chatglm_lite_32k、chatglm_std、chatglm_pro
+        request.setModel(Model.CHATGLM_LITE); // chatGLM_6b_SSE、chatglm_lite、chatglm_lite_32k、chatglm_std、chatglm_pro
         request.setIncremental(false);
         request.setPrompt(new ArrayList<ChatCompletionRequest.Prompt>() {
             private static final long serialVersionUID = -7988151926241837899L;
@@ -87,7 +87,7 @@ public class ChatGLMTest {
 
                 add(ChatCompletionRequest.Prompt.builder()
                         .role(Role.user.getCode())
-                        .content("怎么用java语言写一个冒泡排序?用中文描述一下就行,不需要给我写出具体代码.")
+                        .content("跟我打个招呼吧")
                         .build());
 
             }
