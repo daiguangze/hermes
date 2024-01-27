@@ -20,5 +20,5 @@ public class ChatGLMRequestDTO {
     /**
      * promts
      */
-    private List<MessageDTO> messages;
+    private List<PromptDTO> messages;
 }

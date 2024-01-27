@@ -14,7 +14,7 @@ todo list:
 
 1. 程序入口, 由app层改到了interfaces层
 2. session配置由app层改到了domain层,将GPT服务作为领域, 不同服务商提供的GPT服务作为其子领域
-
+3. chat服务调用由app层请求domain层, (暂时将这个chat作为自己的业务服务,理论上作为外部服务,个人认为更应该扔到防腐层.)
 
 
 ## jvm性能监控

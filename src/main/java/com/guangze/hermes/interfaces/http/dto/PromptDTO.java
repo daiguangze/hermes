@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class MessageDTO {
+public class PromptDTO {
     /**
      * 角色
      */

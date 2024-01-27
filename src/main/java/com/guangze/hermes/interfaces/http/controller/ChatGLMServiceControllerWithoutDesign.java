@@ -5,15 +5,9 @@ import com.guangze.hermes.domain.chatglm.model.ChatCompletionRequest;
 import com.guangze.hermes.domain.chatglm.model.ChatCompletionResponse;
 import com.guangze.hermes.domain.chatglm.model.EventType;
 import com.guangze.hermes.domain.chatglm.model.Model;
-import com.guangze.hermes.domain.chatglm.session.OpenAiConfiguration;
 import com.guangze.hermes.domain.chatglm.session.OpenAiSession;
-import com.guangze.hermes.domain.chatglm.session.OpenAiSessionFactory;
-import com.guangze.hermes.domain.chatglm.session.impl.DefaultOpenAiSeesionFactory;
 import com.guangze.hermes.interfaces.http.dto.ChatGLMRequestDTO;
-import com.guangze.hermes.interfaces.http.dto.MessageDTO;
-import com.guangze.hermes.types.common.Constants;
 import lombok.extern.slf4j.Slf4j;
-import okhttp3.logging.HttpLoggingInterceptor;
 import okhttp3.sse.EventSource;
 import okhttp3.sse.EventSourceListener;
 import org.springframework.util.StringUtils;
@@ -24,7 +18,6 @@ import javax.annotation.Nullable;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
-import java.util.concurrent.CountDownLatch;
 import java.util.stream.Collectors;
 
 @Slf4j
