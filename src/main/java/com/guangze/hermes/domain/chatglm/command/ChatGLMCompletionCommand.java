@@ -5,11 +5,13 @@ import com.google.common.base.Preconditions;
 import com.guangze.hermes.domain.chatglm.model.ChatCompletionRequest;
 import com.guangze.hermes.domain.chatglm.model.Model;
 import com.guangze.hermes.interfaces.http.dto.PromptDTO;
+import lombok.Getter;
 import org.apache.commons.collections.CollectionUtils;
 
 import java.util.Collection;
 import java.util.List;
 
+@Getter
 public class ChatGLMCompletionCommand {
 
     /**
