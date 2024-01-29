@@ -5,23 +5,21 @@ import com.guangze.hermes.application.chat.IChatService;
 import com.guangze.hermes.domain.chatglm.command.ChatGLMCompletionCommand;
 import com.guangze.hermes.interfaces.http.dto.ChatGLMRequestDTO;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyEmitter;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 
 @Slf4j
-@RestController()
-@RequestMapping("/api/${app.config.api-version}/chatgpt/")
+@RestController
+@RequestMapping("/api/${app.config.api-version}/chat/")
 public class ChatGLMServiceController {
 
     @Resource
     IChatService chatService;
 
+    @RequestMapping(value = "/completions", method = RequestMethod.POST)
     public ResponseBodyEmitter completionStream(
             @RequestBody ChatGLMRequestDTO request,
             @RequestHeader("Authorization") String token,
@@ -43,7 +41,7 @@ public class ChatGLMServiceController {
             return chatService.chat(command);
         }catch (Exception e){
             log.error("[Chat] model :{} ,request:{}",request.getModel(),request.getMessages());
-            throw new RuntimeException("aaa");
+            throw new RuntimeException(e.getCause());
         }
 
     }

@@ -1,4 +1,4 @@
-package com.guangze.hermes.application.assembler;
+package com.guangze.hermes.application.chat.assembler;
 
 import com.guangze.hermes.domain.chatglm.model.ChatCompletionRequest;
 import com.guangze.hermes.interfaces.http.dto.PromptDTO;

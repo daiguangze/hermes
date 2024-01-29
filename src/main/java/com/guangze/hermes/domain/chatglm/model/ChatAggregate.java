@@ -27,7 +27,7 @@ public class ChatAggregate {
 
     public ChatAggregate(String model, List<ChatCompletionRequest.Prompt> prompts, String operator) {
         if (StringUtils.isBlank(model)) model = Model.CHATGLM_LITE_32K.getCode();
-        Preconditions.checkArgument(CollectionUtils.isEmpty(prompts),"提示词为空!");
+        Preconditions.checkArgument(!CollectionUtils.isEmpty(prompts),"提示词为空!");
         this.model = model;
         this.prompts = prompts;
         this.operator = operator;

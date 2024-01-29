@@ -10,3 +10,18 @@ chatglm:
     config:
       api-host: https://open.bigmodel.cn/
       api-key: 304a4f67c2699e6a7fe3f177f03ee904.kihba8xg1VfHlWRZ
+
+# 日志
+logging:
+  level:
+    root: info
+  config: classpath:logback-spring.xml
+
+
+# 应用配置
+app:
+  config:
+    # 版本，方便通过接口版本升级
+    api-version: v1
+    # 跨域，开发阶段可以设置为 * 不限制
+    cross-origin: localhost

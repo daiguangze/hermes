@@ -31,7 +31,8 @@ public class ChatGLMCompletionCommand {
 
     public ChatGLMCompletionCommand(String model, List<PromptDTO> prompts, String operator) {
         if (StringUtils.isBlank(model)) model = Model.CHATGLM_LITE.getCode();
-        Preconditions.checkArgument(CollectionUtils.isEmpty(prompts),"prompt 为空!");
+        Preconditions.checkArgument(!CollectionUtils.isEmpty(prompts),"prompt 为空!");
+        this.model = model;
         this.prompts = prompts;
         this.operator = operator;
     }

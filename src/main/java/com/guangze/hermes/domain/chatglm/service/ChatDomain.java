@@ -22,7 +22,7 @@ public class ChatDomain extends AbstractChatService{
         // 封装参数
         ChatCompletionRequest request = new ChatCompletionRequest();
         request.setIncremental(false);
-        request.setModel(Model.valueOf(chatAggregate.getModel()));
+        request.setModel(Model.valueOf(chatAggregate.getModel().toUpperCase()));
         request.setPrompt(chatAggregate.getPrompts());
 
         openAiSession.completions(request, new EventSourceListener() {

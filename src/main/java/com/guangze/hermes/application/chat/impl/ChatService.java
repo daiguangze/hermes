@@ -1,15 +1,17 @@
 package com.guangze.hermes.application.chat.impl;
 
-import com.guangze.hermes.application.assembler.ChatCompletionAssembler;
+import com.guangze.hermes.application.chat.assembler.ChatCompletionAssembler;
 import com.guangze.hermes.application.chat.IChatService;
 import com.guangze.hermes.domain.chatglm.command.ChatGLMCompletionCommand;
 import com.guangze.hermes.domain.chatglm.model.ChatAggregate;
 import com.guangze.hermes.domain.chatglm.service.IChatDomain;
+import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyEmitter;
 
 import javax.annotation.Resource;
 import java.util.stream.Collectors;
 
+@Service
 public class ChatService implements IChatService {
 
     @Resource
