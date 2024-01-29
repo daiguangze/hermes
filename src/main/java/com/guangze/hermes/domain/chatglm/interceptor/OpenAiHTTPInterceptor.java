@@ -2,10 +2,10 @@ package com.guangze.hermes.domain.chatglm.interceptor;
 
 import com.guangze.hermes.domain.chatglm.session.OpenAiConfiguration;
 import com.guangze.hermes.domain.chatglm.utils.ZhiPuTokenUtils;
-import com.sun.istack.internal.NotNull;
 import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 

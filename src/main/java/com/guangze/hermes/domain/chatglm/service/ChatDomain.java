@@ -21,7 +21,7 @@ public class ChatDomain extends AbstractChatService{
     protected void doMessageResposne(ChatAggregate chatAggregate, ResponseBodyEmitter emitter) throws JsonProcessingException {
         // 封装参数
         ChatCompletionRequest request = new ChatCompletionRequest();
-        request.setIncremental(false);
+        request.setIncremental(true);
         request.setModel(Model.valueOf(chatAggregate.getModel().toUpperCase()));
         request.setPrompt(chatAggregate.getPrompts());
 
