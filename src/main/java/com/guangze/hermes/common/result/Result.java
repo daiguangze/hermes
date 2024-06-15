@@ -76,6 +76,14 @@ public class Result<T> implements Serializable {
         return error(String.format(msgPattern, args));
     }
 
+    public static <T> Result<T> error(String message, DebugInfo debugInfo) {
+        return Result.newBuilder()
+                .code(DEFAULT_ERROR_CODE)
+                .message(message)
+                .debug(debugInfo.toString())
+                .build();
+    }
+
 
     private Result(Builder<T> builder) {
         setCode(builder.code);
