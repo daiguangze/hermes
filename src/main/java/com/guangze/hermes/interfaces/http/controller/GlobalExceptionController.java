@@ -1,5 +1,6 @@
 package com.guangze.hermes.interfaces.http.controller;
 
+import com.guangze.hermes.common.exception.enums.ArgExceptionEnum;
 import com.guangze.hermes.common.result.Result;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,7 +16,7 @@ public class GlobalExceptionController {
 
     @RequestMapping("/exception/trigger")
     public Result exceptionTrigger() {
-        throw new RuntimeException("my exception");
+        throw ArgExceptionEnum.BLANK.newException("trigger");
     }
 
     @RequestMapping("/exception/trigger2")

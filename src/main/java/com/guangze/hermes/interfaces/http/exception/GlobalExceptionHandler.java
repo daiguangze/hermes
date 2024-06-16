@@ -1,6 +1,7 @@
 package com.guangze.hermes.interfaces.http.exception;
 
 import com.alibaba.fastjson.JSON;
+import com.guangze.hermes.common.exception.BaseException;
 import com.guangze.hermes.common.result.DebugInfo;
 import com.guangze.hermes.common.result.Result;
 import lombok.extern.slf4j.Slf4j;
@@ -32,6 +33,15 @@ public class GlobalExceptionHandler {
         DebugInfo debug = new DebugInfo(context, e);
         log.error(debug.toString());
         return Result.error(e.getMessage(), debug);
+    }
+
+    @ExceptionHandler(BaseException.class)
+    public Result handleBaseException(BaseException e, HttpServletRequest request) {
+        String context = getContextInfo(e, request);
+        DebugInfo debugInfo = new DebugInfo(context, e);
+        log.warn(debugInfo.toString());
+        return Result.error(e.getRespInfo().getCode(), e.getMessage(), debugInfo);
+
     }
 
 
